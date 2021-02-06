@@ -9,6 +9,8 @@ use v5.10;
 use Carp 'croak';
 use Function::Parameters;
 use JSON::MaybeXS;
+use Try::Tiny;
+
 use Types::Common::String 'NonEmptyStr';
 use Moo;
 use namespace::clean;
@@ -30,35 +32,48 @@ method representatives_for_address (NonEmptyStr $address) {
 
     my $call = $self->_client->get( $uri );
 
-    if ( ! $call->{success} ) {
-        croak 'Call to Google failed : response as follows - ' . $call->{content};
-    }
-    else {
-        my $data = decode_json( $call->{content} );
-
-        my @result;
-
-        my @officials = @{ $data->{officials} };
-
-        for my $job ( @{ $data->{offices} } ) {
-
-            for my $person ( @officials[ @{ $job->{officialIndices} } ] ) {
-                push( @result, {
-                    title         => $job->{name},
-                    name          => $person->{name},
-                    party         => $person->{party},
-                    addresses     => $person->{address},
-                    phone_numbers => $person->{phones},
-                    emails        => $person->{emails},
-                    websites      => $person->{urls},
-                    social_media  => $person->{channels},
-                });
-
-            }
+    my $response;
+    try {
+        if ( ! $call->{success} ) {
+            my $resp = decode_json( $call->{content} );
+            $response = $resp;
         }
+        else {
+            my $data = decode_json( $call->{content} );
 
-        return \@result;
+            my @result;
+
+            my @officials = @{ $data->{officials} };
+
+            for my $job ( @{ $data->{offices} } ) {
+
+                for my $person ( @officials[ @{ $job->{officialIndices} } ] ) {
+                    push( @result, {
+                        title         => $job->{name},
+                        name          => $person->{name},
+                        party         => $person->{party},
+                        addresses     => $person->{address},
+                        phone_numbers => $person->{phones},
+                        emails        => $person->{emails},
+                        websites      => $person->{urls},
+                        social_media  => $person->{channels},
+                    });
+
+                }
+            }
+
+            $response = { officials => \@result };
+        }
     }
+    catch {
+        $response = {
+            error => {
+                message => 'Caught fatal error trying to call Google API',
+            },
+        };
+    };
+
+    return $response;
 }
 
 1; # return true
