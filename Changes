@@ -2,6 +2,9 @@ Changes file for Net::Google::CivicInformation
 
 {{$NEXT}}
 
+  - Add tests and doc and dependencies
+  - Bump major version to 1
+
 0.03      2021-02-06 15:14:31-05:00 America/New_York
 
   - Refactor error handling

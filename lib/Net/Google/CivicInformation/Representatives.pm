@@ -1,6 +1,6 @@
 package Net::Google::CivicInformation::Representatives;
 
-our $VERSION = '0.04';
+our $VERSION = '1.00';
 
 use strict;
 use warnings;
