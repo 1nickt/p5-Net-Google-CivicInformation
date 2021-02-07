@@ -59,6 +59,16 @@ L<https://developers.google.com/civic-information>.
 
 Do not use this module directly. Use one of the subclasses.
 
+=head1 ATTRIBUTES
+
+=over
+
+=item api_key
+
+Your Google Civic Information API key.
+
+=back
+
 =head1 SEE ALSO
 
 L<Net::Google::CivicInformation::Representatives>

@@ -1,6 +1,5 @@
 use strict; use warnings;
-use Test::More;
-use Test::Exception;
+use Test::Most 'die';
 
 use Net::Google::CivicInformation::Representatives;
 
