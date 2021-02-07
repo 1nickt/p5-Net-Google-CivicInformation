@@ -2,6 +2,8 @@ Changes file for Net::Google::CivicInformation
 
 {{$NEXT}}
 
+- No changes for this version
+
 1.00      2021-02-07 17:34:21-05:00 America/New_York
 
   - Add tests and doc and dependencies
