@@ -125,7 +125,7 @@ On error, the response will contain a key C<error> containing a hashref like:
     }
   }
 
-On success, the response will contain an key C<officials> containing an arrayref of
+On success, the response will contain a key C<officials> containing an arrayref of
 hashrefs, ordered by descending seniority (head of state down). Each hashref
 represents a single official: there may be more than one record at the same "rank."
 The hashref will contain the following keys:

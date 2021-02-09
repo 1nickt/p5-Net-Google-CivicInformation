@@ -2,6 +2,8 @@ Changes file for Net::Google::CivicInformation
 
 {{$NEXT}}
 
+  - Fix documentation typo
+
 1.01      2021-02-07 17:36:44-05:00 America/New_York
 
   - No changes for this version
