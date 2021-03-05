@@ -7,7 +7,10 @@ use warnings;
 use v5.10;
 
 use Carp 'croak';
+use Function::Parameters;
 use HTTP::Tiny;
+use Log::Any ();
+
 use Types::Common::String 'NonEmptyStr';
 use Moo;
 use namespace::clean;
@@ -37,6 +40,15 @@ has _client => (
         return $ua;
     },
 );
+
+has log => (
+    is      => 'lazy',
+    builder => sub { Log::Any->get_logger( category => 'Forble', default_adapter => 'JSON' ) },
+);
+
+method BUILD (@) {
+    $self->log->trace('Building instance of ' . __PACKAGE__);
+}
 
 1; # return true
 

@@ -23,7 +23,14 @@ sub _build__api_url {
 }
 
 ##
+method BUILD (@) {
+    $self->log->trace('Building instance of ' . __PACKAGE__);
+}
+
+##
 method representatives_for_address (NonEmptyStr $address) {
+    $self->log->debugf('representatives_for_address called with: "%s"', $address);
+
     my $uri = URI->new( $self->_api_url );
     $uri->query_form(
         address => $address,
@@ -37,8 +44,12 @@ method representatives_for_address (NonEmptyStr $address) {
         if ( ! $call->{success} ) {
             my $resp = decode_json( $call->{content} );
             $response = $resp;
+
+            $self->log->error('Error response from Google API', $resp);
         }
         else {
+            $self->log->debug('Success response from Google API');
+
             my $data = decode_json( $call->{content} );
 
             my @result;
@@ -66,6 +77,8 @@ method representatives_for_address (NonEmptyStr $address) {
         }
     }
     catch {
+        $self->log->errorf("Fatal error trying to call Google API: $_");
+
         $response = {
             error => {
                 message => 'Caught fatal error trying to call Google API',
