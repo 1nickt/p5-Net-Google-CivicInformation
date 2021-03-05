@@ -43,7 +43,7 @@ has _client => (
 
 has log => (
     is      => 'lazy',
-    builder => sub { Log::Any->get_logger( category => 'Forble', default_adapter => 'JSON' ) },
+    builder => sub { Log::Any->get_logger() },
 );
 
 method BUILD (@) {
