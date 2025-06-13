@@ -2,6 +2,8 @@ Changes file for Net::Google::CivicInformation
 
 {{$NEXT}}
 
+1.03      2025-06-13 08:50:08-04:00 America/New_York
+
   - Deprecate Net::Google::CivicInformation::Representatives
 
 1.02      2021-03-05 17:15:43-05:00 America/New_York
