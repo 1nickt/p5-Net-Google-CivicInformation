@@ -1,6 +1,6 @@
 package Net::Google::CivicInformation::Representatives;
 
-our $VERSION = '0.04';
+our $VERSION = '1.0';
 
 use strict;
 use warnings;
@@ -16,6 +16,10 @@ use Moo;
 use namespace::clean;
 
 extends 'Net::Google::CivicInformation';
+
+BEGIN {
+    warn 'Net::Google::CivicInformation::Representatives is deprecated (Google terminated the API) and should no longer be used';
+}
 
 ##
 sub _build__api_url {
@@ -84,7 +88,12 @@ method representatives_for_address (NonEmptyStr $address) {
 
 =head1 NAME
 
-Net::Google::CivicInformation::Representatives - All elected representatives for US addresses
+DEPRECATED: Net::Google::CivicInformation::Representatives - All elected representatives for US addresses
+
+=head1 DESCRIPTION
+
+  DEPRECATED: In April 2025 Google discontinued the API that this module depended on. 
+  The module should no longer be used, and cannot return any data.
 
 =head1 SYNOPSIS
 
