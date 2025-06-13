@@ -1,6 +1,6 @@
 package Net::Google::CivicInformation;
 
-our $VERSION = '0.05';
+our $VERSION = '1.03';
 
 use strict;
 use warnings;
