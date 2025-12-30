@@ -1,6 +1,6 @@
 package Net::Google::CivicInformation;
 
-our $VERSION = '1.04';
+our $VERSION = '1.9901';
 
 use strict;
 use warnings;
@@ -50,8 +50,7 @@ Net::Google::CivicInformation - client for the Google Civic Information API
 
 =head1 DESCRIPTION
 
-Civic information (elected representatives, their contact information,
-jurisdictions, etc) for US addresses, provided via the Google Civic
+Civic information jurisdictions, etc) for US addresses, provided via the Google Civic
 Information API.
 
 You must obtain an API key (free) from Google to use this package. See
@@ -60,6 +59,8 @@ L<https://developers.google.com/civic-information>.
 Do not use this module directly. Use one of the subclasses.
 
 =head1 SEE ALSO
+
+L<Net::Google::CivicInformation::Divisions>
 
 L<Net::Google::CivicInformation::Representatives>
 
